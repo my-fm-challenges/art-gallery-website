@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Art Gallery — hero</title>
+    <style>
+      :root {
+        --clr-bg: rgb(171, 171, 171);
+        --clr-box: #151515;
+        --clr-text: #151515;
+        --clr-text-inverse: #fff;
+
+        --fs-title-s: 3rem;
+        --fs-title-l: 4rem;
+
+        --box-inline-size: 450px; /* ширина чёрного блока = ширина трека */
+        --overhang: 540px; /* насколько заголовок вылезает за блок */
+        --gap: 2rem;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background-color: var(--clr-bg);
+        color: var(--clr-text);
+        font-family: system-ui, sans-serif;
+      }
+
+      h1,
+      p {
+        margin: 0;
+      }
+
+      /* ---------- mobile ---------- */
+      .hero {
+        display: grid;
+        /* gap: var(--gap); */
+        grid-template-areas:
+          "photo"
+          "title"
+          "text"
+          "button";
+      }
+
+      .hero__photo {
+        grid-area: photo;
+        display: block;
+        inline-size: 100%;
+        block-size: auto;
+      }
+
+      .hero__title {
+        grid-area: title;
+        font-size: var(--fs-title-s);
+        line-height: 0.85;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .hero__text {
+        grid-area: text;
+      }
+
+      .hero__button {
+        grid-area: button;
+        justify-self: start;
+      }
+
+      /* блок и призрак существуют только на десктопе */
+      .hero__box,
+      .hero__title--ghost {
+        display: none;
+      }
+
+      /* ---------- 768 ---------- */
+      @media (width >= 768px) {
+        .hero {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto auto 1fr;
+          grid-template-areas:
+            "photo title"
+            "photo text"
+            "photo button";
+        }
+
+        .hero__photo {
+          block-size: 100%;
+          object-fit: cover;
+        }
+        .hero__button {
+          align-self: end;
+        }
+      }
+
+      /* ---------- 1024 ---------- */
+      @media (width >= 1024px) {
+        .hero {
+          height: 800px;
+          /* grid-template-columns: var(--box-inline-size) var(--overhang) 1fr 1fr; */
+          grid-template-columns: var(--box-inline-size) var(--overhang) auto;
+          grid-template-rows: auto auto;
+          grid-template-areas:
+            "box photo text"
+            "box photo button";
+        }
+
+        .hero__box {
+          display: block;
+          grid-area: box;
+          background-color: var(--clr-box);
+        }
+
+        /* обе копии — в области box, сдвинуты вправо на overhang */
+        .hero__title {
+          grid-area: box;
+          align-self: center;
+          text-align: right;
+          font-size: var(--fs-title-l);
+          translate: 150px;
+        }
+
+        .hero__title--ghost {
+          display: block;
+        }
+
+        .hero__title--main {
+          color: var(--clr-text-inverse);
+          clip-path: inset(0 150px 0 0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <p class="hero__title hero__title--ghost" aria-hidden="true">Modern Art<br />Gallery</p>
+      <div class="hero__box"></div>
+      <h1 class="hero__title hero__title--main">Modern Art<br />Gallery</h1>
+      <img class="hero__photo" src="assets/mobile/image-hero.jpg" alt="Посетители галереи перед крупным полотном" />
+      <p class="hero__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis adipisci consectetur, expedita similique, deserunt placeat illum sit fugit fugiat ipsum minus quis unde impedit, modi dolore!</p>
+      <button class="hero__button" type="button">this is button</button>
+    </header>
+  </body>
+</html>

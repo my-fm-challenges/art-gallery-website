@@ -1,0 +1,56 @@
+@font-face {
+  font-display: swap;
+  font-family: "Big Shoulders";
+  font-style: normal;
+  font-weight: 300;
+  src: url("fonts/big-shoulders-v4-latin-300.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Big Shoulders";
+  font-style: normal;
+  font-weight: 800;
+  src: url("fonts/big-shoulders-v4-latin-800.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Big Shoulders";
+  font-style: normal;
+  font-weight: 900;
+  src: url("fonts/big-shoulders-v4-latin-900.woff2") format("woff2");
+}
+
+:root {
+  --color-white: #ffffff;
+  --color-grey-900: #151515;
+  --color-grey-700: #444444;
+  --color-gold-500: #d59bbc;
+
+  --font-base: "Big Shoulders", system-ui, sans-serif;
+
+  --spacing-0: 0;
+  --spacing-025: 2px;
+  --spacing-050: 4px;
+  --spacing-075: 6px;
+  --spacing-100: 8px;
+  --spacing-125: 10px;
+  --spacing-150: 12px;
+  --spacing-200: 16px;
+  --spacing-250: 20px;
+  --spacing-300: 24px;
+  --spacing-500: 32px;
+  --spacing-600: 48px;
+  --spacing-800: 64px;
+  --spacing-1000: 90px;
+
+  --radius-0: 0;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-full: 999px;
+}

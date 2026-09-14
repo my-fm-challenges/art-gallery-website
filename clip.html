@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CLIP</title>
+    <style>
+      .card {
+        border: 1px solid orange;
+        width: 400px;
+        height: 200px;
+        background-color: aqua;
+        /* clip-path: circle(100px at 0 0); */
+        clip-path: inset(0 5vw 0 0);
+        /* clip-path: polygon(5% 5%, 90% 5%, 90% 95%, 5% 95%); */
+      }
+
+      .gradient-text {
+        background-image: linear-gradient(to right, #2e9aff, #f498ad);
+        background-clip: text;
+        color: transparent;
+      }
+
+      /* Общие стили для оформления текста, независимо от тега (h1 или span) */
+      .contrast-title {
+        font-size: 5rem;
+        font-family: "Inter", sans-serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        margin: 0;
+        white-space: nowrap;
+        line-height: 0.85;
+
+        /* Идеальное наложение друг на друга */
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .split-screen {
+        position: relative;
+        width: 100%;
+        height: 200px; /* На весь экран */
+        display: flex;
+      }
+
+      .side {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center; /* Центрируем текст по вертикали внутри панели */
+      }
+
+      /* Белая панель слева */
+      .side-left {
+        background-color: #ffffff;
+        color: #000000; /* Черный цвет текста для белого фона */
+        clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+        z-index: 2; /* Помещаем поверх правой, хотя из-за clip-path это не принципиально */
+      }
+
+      /* Черная панель справа */
+      .side-right {
+        background-color: #000000;
+        color: #c90e0e; /* Белый цвет текста для черного фона */
+        clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+        z-index: 1;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr 1fr;
+        grid-template-rows: 200px 200px;
+        
+
+        /* для desktop вынести в media */
+      }
+
+      h1 {
+        margin: 0;
+        
+      }
+
+      .gallery__title-box {
+        /* padding-inline-start: 15vw; */
+        /* padding-inline-start: 164px; */
+      }
+
+      .gallery__title-box     
+      {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .gallery__title-box-left {
+        background-color: #000000;
+        z-index: 1;
+
+
+      }
+
+      :root {
+        --offset: 160px
+      }
+
+      .gallery__title-box-left .gallery__title {
+        color: white;
+        /* clip-path: polygon(0 0, 10px 0, 10px -10px, 0 -10px); */
+        /* clip-path: polygon(0 0, 86px 205px, 88px -2px, -1px 4px); */
+
+        clip-path: inset(0 var(--offset) 0 0);
+        
+      }
+
+      
+
+      .gallery__title {
+        /* для span */
+        display: block;
+        font-size: 64px;
+        font-weight: 800;
+        font-family: system-ui;
+        margin-left: 40px;
+        line-height: 1;
+
+        transform: translate(var(--offset), 0);        
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h1>
+    </div>
+
+    <div>
+      <div class="gradient-text">
+        <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h1>
+      </div>
+    </div>
+
+    <div class="split-screen">
+      <!-- Левая панель: содержит НАСТОЯЩИЙ заголовок для роботов и людей -->
+      <div class="side side-left">
+        <h1 class="contrast-title">Premium<br />Product</h1>
+      </div>
+
+      <!-- Правая панель: содержит визуальный дубликат, скрытый от скринридеров -->
+      <div class="side side-right">
+        <span class="contrast-title" aria-hidden="true">Premium<br />Product</span>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <div class="gallery__title-box gallery__title-box-left">
+        <h1 class="gallery__title">MODERN ART<br>GALLERY</h1>
+      </div>
+      <div class="gallery__title-box gallery__title-right">
+        <span class="gallery__title">MODERN ART<br>GALLERY</h1>
+      </div>
+    </div>
+  </body>
+</html>

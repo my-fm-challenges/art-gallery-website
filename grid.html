@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GRID</title>
+
+    <style>
+      html {
+        box-sizing: border-box;
+        background-color: rgb(241, 241, 241);
+      }
+
+      /* 2. Заставляем абсолютно все элементы и их псевдоэлементы наследовать это свойство */
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+      
+
+      .page {
+        display: grid;
+        grid-template-columns:
+          [full-start] minmax(1rem, 1fr)
+          [content-start] minmax(0, 60rem)
+          [content-end] minmax(1rem, 1fr)
+          [full-end];
+        row-gap: 1.5rem;
+      }
+
+      /* по умолчанию всё живёт в колонке контента */
+      .page > * {
+        grid-column: content;
+      }
+
+      /* исключения — на всю ширину */
+      .page__hero,
+      .callout {
+        grid-column: full;
+      }
+
+      .page__hero {
+        display: block;
+        inline-size: 100%;
+        block-size: 320px;
+        object-fit: cover;
+      }
+
+      .callout {
+        background: #b2b7bb;
+        padding-block: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    
+
+    <body class="page">
+      <h1 class="page__title">Тепловизоры Sonel</h1>
+
+      <img class="page__hero" src="hero.jpg" alt="Тепловизор в работе на подстанции" />
+
+      <p>Обычный абзац текста, который держится внутри колонки контента.</p>
+
+      <section class="callout">
+        <p>Плашка во всю ширину экрана.</p>
+      </section>
+
+      <p>Ещё абзац.</p>
+    </body>
+  </body>
+</html>

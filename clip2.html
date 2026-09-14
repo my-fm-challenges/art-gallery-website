@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CLIP 2</title>
+    <style>
+      html {
+        background-color: rgb(171, 171, 171);
+      }
+
+      h1,
+      body,
+      p {
+        margin: 0;
+      }
+
+      .header {
+        display: grid;
+        row-gap: 32px;
+      }
+
+      .black-box {
+        display: none;
+      }
+
+      @media (width>=768px) {
+        .header {
+          grid-template-columns: 1fr 1fr;
+          grid-template-areas: "photo-col white-col";
+        }
+
+        .photo {
+          grid-area: photo-col;
+        }
+
+        .title-dup {
+          display: none;
+        }
+
+        .title,
+        .button,
+        .text {
+          grid-area: white-col;
+        }
+
+        .title {
+          margin-block-start: 2rem;
+        }
+
+        .text {
+          margin-block-start: 6rem;
+        }
+        .button {
+          margin-block-start: 12rem;
+        }
+      }
+
+      @media (width >= 1024px) {
+        .header {
+          grid-template-columns: 1fr 1fr;
+          grid-template-areas: "black-box photo-col white-col";
+        }
+
+        .black-box {
+          display: block;
+          width: 450px;
+          background-color: black;
+          grid-area: black-box;
+        }
+
+        .title {
+          grid-area: black-box;
+          color: white;
+          text-align: right;
+          text-transform: uppercase;
+          line-height: 0.85;
+          font-size: 64px;
+          font-weight: bold;
+
+          translate: 200px;
+        }
+
+        .title-main {
+          clip-path: inset(0 200px 0 0);
+        }
+
+        .title-dup {
+          display: block;
+          color: black;
+          z-index: -1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="black-box"></div>
+      <div class="photo">PICTURE</div>
+      <h1 class="title title-main">
+        Modern Art<br />
+        Gallery
+      </h1>
+      <span class="title title-dup" aria-hidden="true">Modern Art<br />Gallery</span>
+      <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis adipisci consectetur, expedita similique, deserunt placeat illum sit fugit fugiat ipsum minus quis unde impedit, modi dolore! Quis impedit fuga ex?</p>
+      <button class="button">this is button</button>
+    </div>
+  </body>
+</html>
