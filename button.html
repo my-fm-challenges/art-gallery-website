@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @font-face {
+        font-display: swap;
+        font-family: "Big Shoulders";
+        font-style: normal;
+        font-weight: 300;
+        src: url("fonts/big-shoulders-v4-latin-300.woff2") format("woff2");
+      }
+      @font-face {
+        font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+        font-family: "Big Shoulders";
+        font-style: normal;
+        font-weight: 800;
+        src: url("fonts/big-shoulders-v4-latin-800.woff2") format("woff2");
+      }
+      @font-face {
+        font-display: swap;
+        font-family: "Big Shoulders";
+        font-style: normal;
+        font-weight: 900;
+        src: url("fonts/big-shoulders-v4-latin-900.woff2") format("woff2");
+      }
+
+      .btn {
+        display: inline-flex;
+        text-decoration: none;
+        background-color: #151515;
+      }
+
+      .btn__label {
+        flex-grow: 1;
+        text-align: center;
+        padding-block: 24px;
+        padding-inline: 32px;
+        text-transform: uppercase;
+        letter-spacing: 3.636px;
+        color: #fff;
+
+        font-family: "Big Shoulders";
+        font-size: 20px;
+        line-height: 1;
+        font-weight: bold;
+      }
+
+      .btn__icon {
+        flex: 0 0 auto; /* не растёт, не сжимается, ширина от содержимого */
+        display: grid;
+        place-items: center;
+        padding-inline: 24px;
+        background-color: #d5966c;
+        color: #fff;
+      }
+
+      .btn__icon svg {
+        inline-size: 8px;
+        block-size: 24px;
+      }
+
+      
+      .btn2 {
+        display: grid;
+        grid-template-columns: auto auto;
+        /* сжимаем */
+        justify-content: start;
+        text-decoration: none;
+      }
+
+      .btn2__label {
+        background-color: black;
+        text-align: center;
+        padding-block: 24px;
+        padding-inline: 32px;
+        text-transform: uppercase;
+        letter-spacing: 3.636px;
+        color: #fff;
+
+        font-family: "Big Shoulders";
+        font-size: 20px;
+        line-height: 1;
+        font-weight: bold;
+      }
+
+      .btn2__icon {
+        display: grid;
+        place-items: center;
+        background-color: #d5966c;
+        color: white;
+        padding-inline: 24px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <a class="btn btn--arrow" href="#location">
+      <span class="btn__label">Our location</span>
+      <span class="btn__icon">
+        <!-- иконка декоративная: её смысл дублирует текст ссылки -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="26" viewBox="0 0 11 26" fill="none">
+          <path d="M0.832031 0.554688L8.83203 12.5547L0.832031 24.5547" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </span>
+    </a>
+
+    <a href="#" class="btn2">
+      <div class="btn2__label">Our Location</div>
+      <span class="btn2__icon"
+        ><svg width="10" height="24" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" stroke-width="2" fill="none" d="m1 0 8 12-8 12" /></svg>
+      </span>
+    </a>
+  </body>
+</html>

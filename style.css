@@ -1,0 +1,267 @@
+@font-face {
+  font-display: swap;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 300;
+  src: url("fonts/outfit-v15-latin-300.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Big Shoulders Display";
+  font-style: normal;
+  font-weight: 300;
+  src: url("fonts/BigShouldersDisplay-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Big Shoulders Display";
+  font-style: normal;
+  font-weight: 800;
+  src: url("fonts/BigShouldersDisplay-ExtraBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Big Shoulders Display";
+  font-style: normal;
+  font-weight: 900;
+  src: url("fonts/BigShouldersDisplay-Black.woff2") format("woff2");
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+body,
+p {
+  margin: 0;
+}
+
+:root {
+  --color-white: #ffffff;
+  --color-grey-900: #151515;
+  --color-grey-700: #444444;
+  --color-gold-500: #d5966c;
+
+  --font-base: "Big Shoulders Display", system-ui, sans-serif;
+
+  --spacing-0: 0;
+  --spacing-025: 2px;
+  --spacing-050: 4px;
+  --spacing-075: 6px;
+  --spacing-100: 8px;
+  --spacing-125: 10px;
+  --spacing-150: 12px;
+  --spacing-200: 16px;
+  --spacing-250: 20px;
+  --spacing-300: 24px;
+  --spacing-400: 32px;
+  --spacing-500: 40px;
+  --spacing-600: 48px;
+  --spacing-800: 64px;
+  --spacing-1000: 90px;
+
+  --radius-0: 0;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-full: 999px;
+
+  /* ДЛЯ hero__title-text */
+  --fluid-0-165: clamp(0rem, -25.3846rem + 39.6635vw, 10.3125rem);
+  --fluid-0-153: clamp(0rem, -28.8rem + 60vw, 9.5625rem);
+  --fluid-0-189: clamp(0rem, -29.0769rem + 45.4327vw, 11.8125rem);
+  --fluid-0-48: clamp(0rem, -7.3846rem + 11.5385vw, 3rem);
+}
+
+body {
+  font-family: var(--font-base);
+}
+
+/* BUTTON */
+.btn {
+  /* grid/flex или margin? */
+
+  display: inline-flex;
+  align-items: center;
+  /* для anchor */
+  text-decoration: none;
+  background-color: var(--color-grey-900);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.btn__label {
+  padding-block: var(--spacing-300);
+  padding-inline: var(--spacing-400);
+  flex-grow: 1;
+
+  color: var(--color-white);
+  font-family: "Big Shoulders Display";
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.22725rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.btn__icon {
+  display: grid;
+  place-items: center;
+  padding-inline: var(--spacing-300);
+  background-color: var(--color-gold-500);
+  color: var(--color-white);
+  align-self: stretch;
+}
+
+.btn__icon svg {
+  inline-size: 10px;
+  block-size: 24px;
+}
+
+/* HERO */
+
+.hero {
+  display: grid;
+  gap: var(--spacing-400);
+  grid-template-areas:
+    "image"
+    "content";
+  max-inline-size: 1440px;
+  margin-inline: auto;
+}
+
+.hero__image {
+  display: grid;
+  grid-area: image;
+}
+
+.hero__title {
+  /* Чтобы перемещать заголовок */
+  position: relative;
+}
+
+.hero__content-wrapper {
+  grid-area: content;
+  display: grid;
+  align-content: center;
+  row-gap: var(--spacing-400);
+}
+
+.hero__content {
+  display: grid;
+  gap: var(--spacing-400);
+  justify-items: left;
+}
+
+.hero__image picture {
+  display: contents; /* picture исчезает из дерева боксов,
+                        img становится прямым grid item */
+  block-size: 100%;
+}
+
+.hero__image img {
+  display: block;
+  width: 100%;
+  /* auto or 100%? */
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero__title-text {
+  color: var(--color-grey-900);
+  font-size: 3.75rem;
+  font-weight: 900;
+  line-height: 0.9;
+  text-transform: uppercase;
+  text-wrap: nowrap;
+}
+
+/* Маска появляется только на desktop */
+.hero__title-mask {
+  display: none;
+}
+
+.hero__text {
+  font-family: Outfit;
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.4;
+  max-inline-size: 350px;
+}
+
+@media (width >= 768px) {
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "image content";
+    gap: 0;
+  }
+
+  .hero__content {
+    align-self: center;
+    gap: var(--spacing-600);
+  }
+
+  .hero__title-text {
+    margin-block-start: var(--fluid-0-153);
+    font-size: 4.375rem;
+  }
+
+  .hero__content-wrapper {
+    margin-inline-start: -48px;
+  }
+}
+
+@media (width >= 1024px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) 1.2fr minmax(0, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: "title image content";
+  }
+
+  .hero__title-mask {
+    display: block;
+    inset: 0;
+    position: absolute;
+    background-color: var(--color-grey-900);
+    overflow: clip;
+    z-index: 1;
+  }
+
+  .hero__content {
+    margin-inline-start: -48px;
+    gap: var(--spacing-800);
+  }
+
+  .hero__content-wrapper {
+    display: contents;
+  }
+
+  .hero__title-text {
+    font-size: 96px;
+    /* 
+    Динамический margin:
+    - До 1024px равен 0px
+    - От 1024px до 1440px плавно растет по формуле
+    - После 1440px фиксируется на 160px
+  */
+    margin-inline-start: var(--fluid-0-165);
+  }
+
+  .hero__title-text--light {
+    color: var(--color-white);
+  }
+}

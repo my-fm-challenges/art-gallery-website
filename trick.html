@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TRICK</title>
+    <style>
+      h1,
+      p,
+      body {
+        margin: 0;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 450px 540px 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: "HERO-TITLE HERO-IMAGE HERO-BODY";
+      }
+
+      .hero__title {
+        grid-area: HERO-TITLE;
+      }
+
+      .hero__image {
+        grid-area: HERO-IMAGE;
+      }
+
+      .hero__body {
+        grid-area: HERO-BODY;
+      }
+
+      .hero__button {
+        display: flex;
+        padding: 24px 32px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        border: none;
+      }
+
+      .hero__button::after {
+        
+      }
+
+      .hero__image {
+        display: grid; /* делаем ячейку внутренним гридом — 
+                    один implicit-трек, img растянется сам */
+      }
+
+      .hero__image picture {
+        display: contents; /* picture исчезает из дерева боксов,
+                        img становится прямым grid item */
+
+        display: block;
+        block-size: 100%;
+      }
+
+      .hero__image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* по умолчанию fill — картинка растянется 
+                             и исказится. cover сохраняет пропорции 
+                             и обрезает лишнее */
+        object-position: center; /* какую часть кадра сохранить при обрезке */
+      }
+
+      @media (width >= 800px) {
+        .hero__title {
+          position: relative;
+          width: 450px;
+          height: 800px;
+
+          /* смещение текста задаётся один раз — для обеих копий сразу */
+          --title-x: 160px;
+          --title-y: 190px;
+        }
+
+        .hero__title-text {
+          font-size: 96px;
+          font-weight: bold;
+          line-height: 0.75;
+          font-family: system-ui;
+
+          text-wrap: nowrap;
+
+          translate: var(--title-x) var(--title-y);
+        }
+
+        .hero__title-text--light {
+          color: white;
+        }
+
+        .hero__title-text--dark {
+          color: black;
+        }
+
+        .hero__text {
+          color: var(--colors-grey-700, #444);
+          font-feature-settings:
+            "liga" off,
+            "clig" off;
+
+          /* text-preset-5 */
+          font-family: system-ui;
+          font-size: 22px;
+          font-weight: 300;
+          line-height: 140%; /* 30.8px */
+        }
+
+        .hero__title-mask {
+          position: absolute;
+          inset: 0;
+          background-color: black;
+          overflow: clip;
+
+          /* над h1 */
+          z-index: 1;
+        }
+
+        .hero__body {
+          max-inline-size: 355px;
+          translate: -64px 255px;
+        }
+
+        .hero__button {
+          margin-block-start: 64px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="hero__title">
+        <div class="hero__title-mask">
+          <p class="hero__title-text hero__title-text--light" aria-hidden="true">MODERN<br />ART GALLERY</p>
+        </div>
+        <h1 class="hero__title-text hero__title-text--dark">MODERN<br />ART GALLERY</h1>
+      </div>
+      <div class="hero__image">
+        <picture>
+          <source media="(width >= 1024px)" srcset="assets/desktop/image-hero.jpg" />
+          <source media="(width >= 768px)" srcset="assets/tablet/image-hero.jpg" />
+          <img src="assets/mobile/image-hero.jpg" alt="" />
+        </picture>
+      </div>
+      <div class="hero__body">
+        <p class="hero__text">The arts in the collection of the Modern Art Gallery all started from a spark of inspiration. Will these pieces inspire you? Visit us and find out.</p>
+        <button class="hero__button">OUR LOCATION<span></span></button>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

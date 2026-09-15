@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>TEMP</title>
     <style>
       * {
         box-sizing: border-box;
@@ -17,73 +17,67 @@
         margin: 0;
       }
 
+      * {
+        box-sizing: border-box;
+      }
+
+      h1,
+      body,
+      p {
+        margin: 0;
+      }
+
+      /* Мобильные стили (до 1024px) */
       .container {
         display: grid;
-        grid-template-columns: 1fr 1.2fr 1fr;
-        grid-template-areas: "title photo content";
-        grid-template-rows: auto auto;
-        max-inline-size: 1440px;
-        margin-inline: auto;
+        grid-template-columns: 1fr;
       }
 
-      .a {
-        grid-area: title;
-        position: relative;
+      .content {
+        display: grid;
+        gap: 24px;
+        /* Здесь можно спокойно задавать background, padding, border для мобилки */
       }
 
-      .b {
-        grid-area: photo;
-      }
+      /* Десктопные стили (от 1024px) */
+      @media (width >= 1024px) {
+        .container {
+          grid-template-columns: 1fr 1fr; /* Две колонки на десктопе */
+          gap: 40px;
+        }
 
-      .c {
-        grid-area: content;
-      }
+        .content {
+          grid-column: 1 / -1; /* Растягиваем обертку на обе колонки родителя */
+          display: grid;
+          grid-template-columns: subgrid; /* Наследуем сетку родителя! */
+          gap: inherit;
+        }
 
-      .b__image {
-        display: block;
-      }
+        .title__wrapper {
+          grid-column: 1; /* h1 улетает в левую колонку */
+        }
 
-      .a__mask {
-        position: absolute;
-        background-color: #030303;
-        inset: 0;
-        overflow: clip;
-        z-index: 1;
-      }
-
-      .a__title-light {
-        color: rgb(250, 250, 250);
-      }
-
-      .a__title-dark {
-        color: #030303;
-      }
-
-      .a__title {
-        /* чтобы не влияло на ширину блока! */
-        position: absolute;
-        font-size: 96px;
-        line-height: 0.85;
-        translate: 165px 190px;
-        font-family: system-ui;
-        font-weight: bold;
-        text-wrap: nowrap;
+        .content__wrapper {
+          grid-column: 2; /* p и button улетают в правую колонку */
+        }
       }
     </style>
   </head>
 
   <body>
     <div class="container">
-      <div class="a">
-        <div class="a__mask">
-          <p class="a__title a__title-light">MODERN<br />ART GALLERY</p>
+      <!-- .content живет как единое целое до 1024px -->
+      <div class="content">
+        <div class="title__wrapper">
+          <h1>TITLE TEXT</h1>
         </div>
-        <h1 class="a__title a__title-dark">MODERN<br />ART GALLERY</h1>
+        <div class="content__wrapper">
+          <div class="content__text">
+            <p>Lorem ipsum dolor sit amet...</p>
+          </div>
+          <button>Press Me</button>
+        </div>
       </div>
-      <div class="b">
-        <img src="assets/image-hero.jpg" alt="" class="b__image" />
-      </div>
-      <div class="c">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem labore velit aperiam in natus quod repellendus ab, obcaecati, praesentium beatae inventore pariatur! Eveniet unde vitae sapiente assumenda perferendis, voluptatibus repudiandae.</div>
     </div>
   </body>
 </html>
