@@ -21,63 +21,86 @@
         box-sizing: border-box;
       }
 
-      h1,
-      body,
-      p {
-        margin: 0;
+      :root {
+        --grid-gap: 30px;
+        --container-max-width: 1110px;
       }
 
-      /* Мобильные стили (до 1024px) */
-      .container {
+      .grid-12 {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: 1fr;
+        gap: var(--grid-gap);
+        max-width: var(--container-max-width);
+        margin: 0 auto;
+        /* padding: 0 32px; */
+      }
+
+      .grid-item-1 {
+        grid-column: 1 / -1;
+
+        display: grid;
+        grid-template-columns: subgrid;
+      }
+
+      .grid-item-header {
+        grid-column: 1 / 5;
+      }
+
+      .grid-item-image {
+        grid-column: 6 / -1;
+      }
+
+      .grid-item-2 {
+      }
+      .grid-item-3 {
+      }
+
+      img {
+        display: block;
+        /* max-width: 100%; */
+        height: auto;
+        width: 100%;
+        object-fit: contain;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns:
+          [full-start] minmax(12px, 1fr)
+          [content-start] repeat(12, [col-start] minmax(0, calc(1440px / 12)) [col-end]) [content-end]
+          minmax(12px, 1fr) [full-end];
+        grid-auto-rows: 1fr;
+      }
+
+      .layout > * {
+        grid-column: content-start / content-end;
+      }
+      .layout-full-width {
+        grid-column: full-start / full-end;
       }
 
       .content {
-        display: grid;
-        gap: 24px;
-        /* Здесь можно спокойно задавать background, padding, border для мобилки */
-      }
-
-      /* Десктопные стили (от 1024px) */
-      @media (width >= 1024px) {
-        .container {
-          grid-template-columns: 1fr 1fr; /* Две колонки на десктопе */
-          gap: 40px;
-        }
-
-        .content {
-          grid-column: 1 / -1; /* Растягиваем обертку на обе колонки родителя */
-          display: grid;
-          grid-template-columns: subgrid; /* Наследуем сетку родителя! */
-          gap: inherit;
-        }
-
-        .title__wrapper {
-          grid-column: 1; /* h1 улетает в левую колонку */
-        }
-
-        .content__wrapper {
-          grid-column: 2; /* p и button улетают в правую колонку */
-        }
+        background-color: antiquewhite;
       }
     </style>
   </head>
 
   <body>
-    <div class="container">
-      <!-- .content живет как единое целое до 1024px -->
-      <div class="content">
-        <div class="title__wrapper">
-          <h1>TITLE TEXT</h1>
+    <div class="grid-12">
+      <div class="grid-item-1">
+        <div class="grid-item-header">
+          <h1>Your Day at<br />the Gallery</h1>
+          <p>Wander through our distinct collections and find new insights about our artists. Dive into the details of their creative process.</p>
         </div>
-        <div class="content__wrapper">
-          <div class="content__text">
-            <p>Lorem ipsum dolor sit amet...</p>
-          </div>
-          <button>Press Me</button>
-        </div>
+        <div class="grid-item-image"><img src="assets/desktop/image-grid-1.jpg" alt="" /></div>
       </div>
+      <div class="grid-item-2"></div>
+      <div class="grid-item-3"></div>
+    </div>
+
+    <div class="layout">
+      <div class="content">123</div>
     </div>
   </body>
 </html>

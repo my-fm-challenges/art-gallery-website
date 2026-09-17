@@ -3,50 +3,104 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TEMP2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png" />
+      h1,
+      h2,
+      h3,
+      p,
+      body {
+        margin: 0;
+      }
+      picture {
+        display: block;
+      }
 
-    <link rel="stylesheet" href="style.css" />
+      picture img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
-    <title>Frontend Mentor | Art gallery website</title>
+      /* GALLERY */
+      /* MOBILE FIRST (Мобилка по умолчанию) */
+
+      .gallery {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-card {
+        display: grid;
+      }
+
+      .gallery-card__picture {
+        order: 1;
+      }
+
+      .gallery-card__content {
+        order: 2;
+      }
+
+      /* TABLET & DESKTOP (От 768px и выше) */
+      @media (width >= 768px) {
+        .gallery {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+        }
+
+        .gallery-card {
+          grid-column: 1 / -1;
+
+          grid-template-columns: repeat(2, 1fr);
+          align-items: center;
+        }
+
+        .gallery-card__picture {
+          order: 2;
+        }
+
+        .gallery-card__content {
+          order: 1;
+        }
+
+        /* image-grid-2.jpg */
+        .gallery__item:nth-child(2) {
+          grid-column: 1 / 2;
+          grid-row: 2/4;
+        }
+
+        /* image-grid-3 */
+        /* для надежности указываем явно */
+        .gallery__item:nth-child(3) {
+          grid-column: 2/3;
+        }
+
+        .gallery-footer {
+          grid-column: 2/3;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+        }
+      }
+      @media (width >= 1024px) {
+        .gallery {
+          gap: 32px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <section class="hero">
-      <div class="hero__image">
-        <picture>
-          <source media="(width >= 1024px)" srcset="assets/desktop/image-hero.jpg" width="540" height="800" />
-          <source media="(width >= 768px)" srcset="assets/tablet/image-hero.jpg" width="437" height="700" />
-          <img src="assets/mobile/image-hero.jpg" alt="" width="375" height="240" />
-        </picture>
-      </div>
-
-      <div class="hero__content-wrapper">
-        <div class="hero__title">
-          <div class="hero__title-mask">
-            <p class="hero__title-text hero__title-text--light" aria-hidden="true">MODERN<br />ART GALLERY</p>
-          </div>
-          <h1 class="hero__title-text hero__title-text--dark">MODERN<br />ART GALLERY</h1>
-        </div>
-        <div class="hero__content">
-          <p class="hero__text">The arts in the collection of the Modern Art Gallery all started from a spark of inspiration. Will these pieces inspire you? Visit us and find out.</p>
-          <a class="btn btn--arrow">
-            <span class="btn__label">OUR LOCATION</span>
-            <span class="btn__icon"
-              ><svg width="10" height="24" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" stroke-width="2" fill="none" d="m1 0 8 12-8 12" /></svg>
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
-
     <article class="gallery">
       <!-- 1. BLOCK-1 (Объединяем заголовок и картинку в одну карточку-блок) -->
       <div class="gallery__item gallery-card">
         <div class="gallery-card__content">
-          <h2 class="gallery-card__title">
-            Your Day at<br />
-            the Gallery
-          </h2>
+          <h2 class="gallery-card__title">Your Day at the Gallery</h2>
           <p class="gallery-card__subtitle">Wander through our distinct collections and find new insights about our artists. Dive into the details of their creative process.</p>
         </div>
         <picture class="gallery-card__picture">
@@ -72,7 +126,7 @@
 
       <!-- 4. BLOCK-2 (Используем Вариант 2 с БЭМ-миксом) -->
       <div class="gallery__item gallery-footer">
-        <h2 class="gallery-footer__title">COME & BE<br />INSPIRED</h2>
+        <h2 class="gallery-footer__title">COME & BE INSPIRED</h2>
         <p class="gallery-footer__subtitle">We’re excited to welcome you to our gallery and see how our collections influence you.</p>
       </div>
     </article>
